@@ -5,7 +5,10 @@ import {
   REGISTER_SUCCESS,
   LOGIN_USER,
   LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  AUTH_USER,
+  AUTH_FAIL,
+  AUTH_SUCCESS
 } from '../constants/actions-types';
 
 export const register = user => async dispatch => {
@@ -39,6 +42,29 @@ export const login = userCredential => async dispatch => {
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,
+      payload: error.response.data.errors
+    });
+  }
+};
+
+export const isAuth = () => async dispatch => {
+  dispatch({
+    type: AUTH_USER
+  });
+  const config = {
+    headers: {
+      Authorization: localStorage.getItem('token')
+    }
+  };
+  try {
+    const isAuth = await axios.get('/current', config);
+    dispatch({
+      type: AUTH_SUCCESS,
+      payload: isAuth.data
+    });
+  } catch (error) {
+    dispatch({
+      type: AUTH_FAIL,
       payload: error.response.data.errors
     });
   }
