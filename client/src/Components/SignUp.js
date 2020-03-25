@@ -20,52 +20,51 @@ class SignUp extends Component {
     return (
       <form className='container ml-auto' onSubmit={this.register}>
         <h1>Welcome to Our App </h1>
-        <form>
-          <div className='row mt-2 justify-content-md-center'>
-            <input
-              class='form-control'
-              type='text'
-              name='email'
-              placeholder='email'
-              onChange={this.changeHandler}
-            />
-          </div>
-          <div className='row mt-2 justify-content-md-center'>
-            <input
-              class='form-control'
-              type='text'
-              name='name'
-              placeholder='name'
-              onChange={this.changeHandler}
-            />
-          </div>
-          <div className='row mt-2 justify-content-md-center'>
-            <input
-              class='form-control'
-              type='password'
-              name='password'
-              placeholder='password'
-              onChange={this.changeHandler}
-            />
-          </div>
-          <div className='row mt-2 justify-content-md-center'>
-            <input
-              class='form-control'
-              type='text'
-              name='phoneNumber'
-              placeholder='Phone Number'
-              onChange={this.changeHandler}
-            />
-          </div>
-          <div className='row mt-2 justify-content-md-center'>
-            <button className='btn btn-outline-primary' onClick={this.register}>
-              Register
-            </button>
-            <button type='reset' className='btn btn-outline-danger'>
-              Reset
-            </button>
-          </div>
-        </form>
+
+        <div className='row mt-2 justify-content-md-center'>
+          <input
+            className='form-control'
+            type='text'
+            name='email'
+            placeholder='email'
+            onChange={this.changeHandler}
+          />
+        </div>
+        <div className='row mt-2 justify-content-md-center'>
+          <input
+            className='form-control'
+            type='text'
+            name='name'
+            placeholder='name'
+            onChange={this.changeHandler}
+          />
+        </div>
+        <div className='row mt-2 justify-content-md-center'>
+          <input
+            className='form-control'
+            type='password'
+            name='password'
+            placeholder='password'
+            onChange={this.changeHandler}
+          />
+        </div>
+        <div className='row mt-2 justify-content-md-center'>
+          <input
+            className='form-control'
+            type='text'
+            name='phoneNumber'
+            placeholder='Phone Number'
+            onChange={this.changeHandler}
+          />
+        </div>
+        <div className='row mt-2 justify-content-md-center'>
+          <button className='btn btn-outline-primary' onClick={this.register}>
+            Register
+          </button>
+          <button type='reset' className='btn btn-outline-danger'>
+            Reset
+          </button>
+        </div>
       </form>
     );
   }
