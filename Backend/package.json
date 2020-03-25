@@ -5,7 +5,14 @@
   "author": "Anis Mell",
   "license": "MIT",
   "dependencies": {
+    "config": "^3.3.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.6"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
