@@ -7,6 +7,6 @@ const Router = express.Router();
 
 Router.post('/register', registerRules(), validator, userController.register);
 Router.post('/login', userController.login);
-Router.post('/current', isAuth(), (req, res) => res.json({ user: req.user }));
+Router.get('/current', isAuth(), (req, res) => res.json({ user: req.user }));
 
 module.exports = Router;
