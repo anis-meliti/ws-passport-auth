@@ -4,13 +4,17 @@ import {
   REGISTER_SUCCESS,
   LOGIN_USER,
   LOGIN_FAIL,
-  LOGIN_SUCCESS
+  LOGIN_SUCCESS,
+  AUTH_FAIL,
+  AUTH_SUCCESS,
+  AUTH_USER
 } from '../constants/actions-types';
 
 const initialState = {
   isLoading: false,
   errors: [],
-  user: null
+  user: null,
+  isAuth: false
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -47,6 +51,23 @@ const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false
+      };
+    case AUTH_USER:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case AUTH_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: false
+      };
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isAuth: true
       };
     default:
       return state;
