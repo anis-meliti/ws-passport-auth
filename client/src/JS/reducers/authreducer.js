@@ -1,7 +1,35 @@
-const initialState = {};
+import {
+  REGISTER_USER,
+  REGISTER_FAIL,
+  REGISTER_SUCCESS
+} from '../constants/actions-types';
 
-const authReducer = (state = initialState, { action, payload }) => {
-  switch (action) {
+const initialState = {
+  isLoading: false,
+  errors: [],
+  user: {}
+};
+
+const authReducer = (state = initialState, { type, payload }) => {
+  console.log('authReducer -> payload', payload);
+  switch (type) {
+    case REGISTER_USER:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: payload
+      };
     default:
       return state;
   }
