@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Redirect } from 'react-router-dom';
 import { register } from '../JS/actions/actions';
 class SignUp extends Component {
   state = {
@@ -17,7 +17,14 @@ class SignUp extends Component {
     this.props.register(this.state);
   };
   render() {
-    return (
+    const { isLoading, user } = this.props;
+    return isLoading ? (
+      <div class='spinner-border justify-content-md-center' role='status'>
+        <span class='sr-only'>Loading...</span>
+      </div>
+    ) : user ? (
+      <Redirect to='/' />
+    ) : (
       <form className='container ml-auto' onSubmit={this.register}>
         <h1>Welcome to Our App </h1>
 
@@ -69,5 +76,8 @@ class SignUp extends Component {
     );
   }
 }
-
-export default connect(null, { register })(SignUp);
+const mapsStateToProps = state => ({
+  isLoading: state.authReducer.isLoading,
+  user: state.authReducer.user
+});
+export default connect(mapsStateToProps, { register })(SignUp);

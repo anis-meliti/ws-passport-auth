@@ -7,11 +7,10 @@ import {
 const initialState = {
   isLoading: false,
   errors: [],
-  user: {}
+  user: null
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
-  console.log('authReducer -> payload', payload);
   switch (type) {
     case REGISTER_USER:
       return {
