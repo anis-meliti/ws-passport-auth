@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-const Profile = ({ isAuth, isLoading, user }) => {
-  return isLoading ? (
-    <div class='spinner-border justify-content-md-center' role='status'>
-      <span class='sr-only'>Loading...</span>
-    </div>
-  ) : !isAuth ? (
-    <Redirect to='/' />
-  ) : (
-    <div>
-      <pre>
-        <code>{JSON.stringify(user)}</code>
-      </pre>
-    </div>
-  );
-};
+
+import { isAuthorized } from '../JS/actions/actions';
+class Profile extends React.Component {
+  componentDidMount() {
+    this.props.isAuthorized();
+  }
+  render() {
+    const { isAuth, profile } = this.props;
+    return !isAuth ? (
+      <Redirect to='/' />
+    ) : (
+      <div>
+        <pre>
+          <code>{JSON.stringify(profile)}</code>
+        </pre>
+      </div>
+    );
+  }
+}
 const mapStateToProps = state => ({
-  isLoading: state.authReducer.isLoading,
   isAuth: state.authReducer.isAuth,
-  user: state.authReducer.user
+  profile: state.authReducer.profile
 });
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, { isAuthorized })(Profile);

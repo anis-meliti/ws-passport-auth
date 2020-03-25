@@ -14,7 +14,8 @@ const initialState = {
   isLoading: false,
   errors: [],
   user: null,
-  isAuth: false
+  isAuth: false,
+  profile: null
 };
 
 const authReducer = (state = initialState, { type, payload }) => {
@@ -67,7 +68,8 @@ const authReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        isAuth: true
+        isAuth: true,
+        profile: payload
       };
     default:
       return state;

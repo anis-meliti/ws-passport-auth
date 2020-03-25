@@ -47,7 +47,7 @@ export const login = userCredential => async dispatch => {
   }
 };
 
-export const isAuth = () => async dispatch => {
+export const isAuthorized = () => async dispatch => {
   dispatch({
     type: AUTH_USER
   });
