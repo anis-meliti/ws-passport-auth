@@ -1,6 +1,9 @@
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const config = require('config');
 const User = require('../models/User');
 
+const secretOrKey = config.get('secretOrKey');
 module.exports = userController = {
   register: async (req, res) => {
     const { email, name, password, phoneNumber } = req.body;
@@ -26,6 +29,29 @@ module.exports = userController = {
             res.status(500).json({ errors: error });
           }
         });
+      });
+    } catch (error) {
+      res.status(500).json({ errors: error });
+    }
+  },
+  login: async (req, res) => {
+    const { email, password } = req.body;
+    try {
+      const searchResult = await User.findOne({ email });
+      if (!searchResult)
+        return res.status(400).json({ errors: 'Bad credentials !' });
+      const isMatch = await bcrypt.compare(password, searchResult.password);
+      if (!isMatch)
+        return res.status(400).json({ errors: 'Bad credentials !' });
+      const paylaod = {
+        id: searchResult._id,
+        name: searchResult.name,
+        email: searchResult.email,
+        phoneNumber: searchResult.phoneNumber
+      };
+      jwt.sign(paylaod, secretOrKey, (err, token) => {
+        if (err) throw err;
+        res.json({ token: `Bearer ${token}` });
       });
     } catch (error) {
       res.status(500).json({ errors: error });

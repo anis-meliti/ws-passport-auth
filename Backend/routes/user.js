@@ -5,5 +5,6 @@ const { registerRules, validator } = require('../middlewares/validator');
 const Router = express.Router();
 
 Router.post('/register', registerRules(), validator, userController.register);
+Router.post('/login', userController.login);
 
 module.exports = Router;
