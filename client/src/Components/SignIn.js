@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { login } from '../JS/actions/actions';
+import { Redirect } from 'react-router-dom';
 class SignIn extends Component {
   state = {
     email: '',
@@ -10,9 +14,17 @@ class SignIn extends Component {
 
   login = e => {
     e.preventDefault();
+    this.props.login(this.state);
   };
   render() {
-    return (
+    const { isLoading } = this.props;
+    return localStorage.getItem('token') ? (
+      <Redirect to='/home' />
+    ) : isLoading ? (
+      <div class='spinner-border justify-content-md-center' role='status'>
+        <span class='sr-only'>Loading...</span>
+      </div>
+    ) : (
       <form className='container ml-auto' onSubmit={this.login}>
         <h1>Welcome to Our App </h1>
 
@@ -48,5 +60,7 @@ class SignIn extends Component {
     );
   }
 }
-
-export default SignIn;
+const mapStateToProps = state => ({
+  isLoading: state.authReducer.isLoading
+});
+export default connect(mapStateToProps, { login })(SignIn);
