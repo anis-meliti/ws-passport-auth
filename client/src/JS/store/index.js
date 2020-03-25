@@ -3,8 +3,7 @@ import thunk from 'redux-thunk';
 import combineReducer from '../reducers/index';
 const middleWare = [thunk];
 
-const composeEnhancers =
-  window.__REDUX_DEV_TOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {};
 
