@@ -2,6 +2,9 @@
   "name": "second-ws-passport",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "13.11.0"
+  },
   "author": "Anis Melliti <ansmeliti@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -11,6 +14,6 @@
     "client": "cd client && yarn run start",
     "server": "cd Backend && yarn run start",
     "dev": "concurrently \" yarn run client \" \" yarn run server \"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefex client && npm run build --prefex client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   }
 }
