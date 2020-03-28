@@ -13,7 +13,8 @@
   "scripts": {
     "client": "cd client && yarn run start",
     "server": "cd Backend && yarn run start",
-    "start": "concurrently \" yarn run client \" \" yarn run server \"",
+    "dev": "concurrently \" yarn run client \" \" yarn run server \"",
+    "start": "cd Backend && yarn && yarn start",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   }
 }

@@ -9,12 +9,14 @@ connectDb();
 
 app.use('/', user);
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/client/build')));
-  app.get('*', (req, res) => {
-    res.sendFile(parth.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+app.use(express.static(path.join(__dirname, '../client/build')));
+console.log('__dirname', __dirname);
+app.get('*', (req, res) => {
+  res.sendFile(parth.resolve(__dirname, '../client/build/index.html'));
+  console.log('__dirname', __dirname);
+});
+// }
 
 const PORT = process.env.PORT || 5000;
 
