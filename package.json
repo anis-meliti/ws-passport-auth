@@ -8,8 +8,9 @@
     "concurrently": "^5.1.0"
   },
   "scripts": {
-    "front": "cd client && yarn run start",
-    "back": "cd Backend && yarn run start",
-    "start": "concurrently \" yarn run front \" \" yarn run back \""
+    "client": "cd client && yarn run start",
+    "server": "cd Backend && yarn run start",
+    "dev": "concurrently \" yarn run client \" \" yarn run server \"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefex client && npm run build --prefex client"
   }
 }
